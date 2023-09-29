@@ -20,11 +20,13 @@ const Products = ({ cat, filters, sort }) => {
       try {
         const res = await axios.get(
           cat
-            ? `http://localhost:5000/api/products?category=${cat}`
-            : "http://localhost:5000/api/products"
+            ? `https://fashionfusionapi.vercel.app/api/products?category=${cat}`
+            : "https://fashionfusionapi.vercel.app/api/products"
         );
         setProducts(res.data);
-      } catch (err) {}
+      } catch (err) {
+        console.log("here error");
+      }
     };
     getProducts();
   }, [cat]);
