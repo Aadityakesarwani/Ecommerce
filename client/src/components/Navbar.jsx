@@ -62,7 +62,7 @@ const Right = styled.div`
 `;
 
 const MenuItem = styled.div`
-  font-size: 14px;
+  font-size: 20px;
   cursor: pointer;
   margin-left: 25px;
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
@@ -73,6 +73,8 @@ const Navbar = () => {
 
   const quantity = useSelector(state=>state.cart.quantity)
   const user = useSelector((state) => state.user.currentUser);
+
+
 
 
   return (
@@ -90,12 +92,21 @@ const Navbar = () => {
         </Center>
         <Right>
           <Link to = {user ? "/" : "/register"}>
-          <MenuItem>{user ? user.currentUser.userName : "REGISTER"} </MenuItem>
+          <MenuItem>{  user ? user.username : "Register"} </MenuItem>
           </Link>
 
-          <Link to = {user ? "/" : "/login"}>
-          <MenuItem>{user ? "LOGOUT" : "SIGN IN"}</MenuItem>
+          {/* <Link to = {user ? "/" : "/login"}>
+          <MenuItem>{user ? "Logout" : "Sign In"}</MenuItem>
+          </Link> */}
+
+          <Link to = {user ? "/" : "/login"} onClick={() => {
+                      // Logout the user
+                     console.log("logoutt")
+                    }}>
+          <MenuItem>{user ? "Logout" : "Sign In"}</MenuItem>
           </Link>
+         
+
           
           <Link to="/cart">
           <MenuItem>

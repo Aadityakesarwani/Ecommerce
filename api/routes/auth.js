@@ -6,8 +6,6 @@ const jwt = require("jsonwebtoken");
 //REGISTER
 router.post("/register", async (req, res) => {
 
-  res.setHeader('Access-Control-Allow-Origin', 'https://fashionfusion.vercel.app');
-
   if (req.body.password !== req.body.confirmPassword) {
     return res.status(400).json({ error: "Passwords do not match" });
   }
@@ -21,7 +19,7 @@ router.post("/register", async (req, res) => {
 
   const newUser = new User({
     name : req.body.name,
-    lastname : req.body.lastname,
+    lastName : req.body.lastName,
     username: req.body.username,
     email: req.body.email,
     password: encryptedPassword,
@@ -40,7 +38,6 @@ router.post("/register", async (req, res) => {
 router.post("/login", async (req, res) => {
   try {
 
-    res.setHeader('Access-Control-Allow-Origin', 'https://fashionfusion.vercel.app');
 
     const user = await User.findOne({ username: req.body.username });
     !user && res.status(401).json("Wrong credentials!");
@@ -70,5 +67,20 @@ router.post("/login", async (req, res) => {
     res.status(500).json(err);
   }
 });
+
+
+// router.get("/logout", async (req, res) => {
+//   // Destroy the user's session
+//   req.session.destroy();
+
+//   // Remove the user's authentication tokens
+//   res.clearCookie("access_token");
+//   res.clearCookie("refresh_token");
+
+//   // Redirect the user to the homepage
+//   res.redirect("/");
+// });
+
+
 
 module.exports = router;
