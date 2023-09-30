@@ -64,6 +64,8 @@ const Register = () => {
 
   const error = useSelector((state) => state.user);
 
+  const isRegistered = useSelector((state) => state.user.currentUser);
+
   const dispatch = useDispatch();
 
   const [user, setUser] = useState({
@@ -136,7 +138,9 @@ const Register = () => {
             By creating an account, I consent to the processing of my personal
             data in accordance with the <b>PRIVACY POLICY</b>
           </Agreement>
-          <Button type="submit">CREATE</Button> { }
+          <Button type="submit">
+            CREATE
+            </Button> { }
           {error && (
             <div style={{ color: 'red', fontSize: '14px', marginTop: '8px' }}>
               Username, email, and password should be unique.

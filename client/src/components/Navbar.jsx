@@ -69,7 +69,12 @@ const MenuItem = styled.div`
 `;
 
 const Navbar = () => {
+
+
   const quantity = useSelector(state=>state.cart.quantity)
+  const user = useSelector((state) => state.user.currentUser);
+
+
   return (
     <Container>
       <Wrapper>
@@ -84,12 +89,12 @@ const Navbar = () => {
           <Logo>Fashion Fusion.</Logo>
         </Center>
         <Right>
-          <Link to = "/register">
-          <MenuItem>REGISTER</MenuItem>
+          <Link to = {user ? "/" : "/register"}>
+          <MenuItem>{user ? user.currentUser.userName : "REGISTER"} </MenuItem>
           </Link>
 
-          <Link to = "/login">
-          <MenuItem>SIGN IN</MenuItem>
+          <Link to = {user ? "/" : "/login"}>
+          <MenuItem>{user ? "LOGOUT" : "SIGN IN"}</MenuItem>
           </Link>
           
           <Link to="/cart">
