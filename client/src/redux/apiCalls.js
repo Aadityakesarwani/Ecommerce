@@ -22,7 +22,7 @@ export const register = async (dispatch, user) => {
     const res = await publicRequest.post("/auth/register", user);
     console.log('Registration successful:', res.data);
   } catch (error) {
-    console.error('Registration error:', error.data);
+    console.error('Registration error:', error);
   }
 };
 
