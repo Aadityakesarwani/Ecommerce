@@ -5,6 +5,8 @@ const jwt = require("jsonwebtoken");
 
 //REGISTER
 router.post("/register", async (req, res) => {
+  
+  res.setHeader('Access-Control-Allow-Origin', 'https://localhost:3000');
 
   if (req.body.password !== req.body.confirmPassword) {
     return res.status(400).json({ error: "Passwords do not match" });
@@ -37,6 +39,9 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
+
+    res.setHeader('Access-Control-Allow-Origin', 'https://localhost:3000');
+
     const user = await User.findOne({ username: req.body.username });
     !user && res.status(401).json("Wrong credentials!");
 

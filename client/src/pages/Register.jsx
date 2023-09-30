@@ -64,7 +64,6 @@ const Register = () => {
 
   const error = useSelector((state) => state.user);
 
-  const isRegistered = useSelector((state) => state.user.currentUser);
 
   const dispatch = useDispatch();
 
