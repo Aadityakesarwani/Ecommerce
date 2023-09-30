@@ -68,16 +68,21 @@ const ProductList = () => {
             <Option>blue</Option>
             <Option>yellow</Option>
             <Option>green</Option>
+            <Option>pink</Option>
+            <Option>teal</Option>
           </Select>
           <Select name="size" onChange={handleFilters}>
             <Option disabled>Size</Option>
-            <Option>XS</Option>
             <Option>S</Option>
             <Option>M</Option>
             <Option>L</Option>
             <Option>XL</Option>
+            <Option>5Y</Option>
+            <Option>6Y</Option>
+            <Option>7Y</Option>
           </Select>
         </Filter>
+
         <Filter>
           <FilterText>Sort Products:</FilterText>
           <Select onChange={(e) => setSort(e.target.value)}>
@@ -86,6 +91,7 @@ const ProductList = () => {
             <Option value="desc">Price (desc)</Option>
           </Select>
         </Filter>
+        
       </FilterContainer>
       <Products cat={cat} filters={filters} sort={sort} />
       <Newsletter />

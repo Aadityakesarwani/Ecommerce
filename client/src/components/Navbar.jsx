@@ -92,22 +92,21 @@ const Navbar = () => {
         </Center>
         <Right>
           <Link to = {user ? "/" : "/register"}>
-          <MenuItem>{  user ? user.username : "Register"} </MenuItem>
+          <MenuItem>{  user ? " " : "Register"} </MenuItem>
           </Link>
-
-          {/* <Link to = {user ? "/" : "/login"}>
-          <MenuItem>{user ? "Logout" : "Sign In"}</MenuItem>
-          </Link> */}
-
-          <Link to = {user ? "/" : "/login"} onClick={() => {
-                      // Logout the user
-                     console.log("logoutt")
-                    }}>
-          <MenuItem>{user ? "Logout" : "Sign In"}</MenuItem>
+  
+          <Link to = {user ? "/" : "/login"} 
+          // onClick={() => {
+          //             // Logout the user
+          //            console.log("logoutt")
+          //           }
+          //           }
+                    >
+          <MenuItem>{user ? user.username : "Sign In"}</MenuItem>
           </Link>
          
 
-          
+        
           <Link to="/cart">
           <MenuItem>
             <Badge badgeContent={quantity} color="primary">

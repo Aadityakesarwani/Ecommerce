@@ -4,7 +4,13 @@ import {
   ShoppingCartOutlined,
 } from "@material-ui/icons";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { addProduct } from "../redux/cartRedux";
+import { useEffect, useState } from "react";
+import { publicRequest } from "../requestMethods";
+
+
 
 const Info = styled.div`
   opacity: 0;
@@ -68,13 +74,43 @@ const Icon = styled.div`
 `;
 
 const Product = ({ item }) => {
+  const dispatch = useDispatch();
+
+  const [product, setProduct] = useState({});
+  const [quantity, setQuantity] = useState(1);
+  const [color, setColor] = useState("");
+  const [size, setSize] = useState("");
+
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await publicRequest.get("/products/find/" + item._id);
+        setProduct(res.data);
+      } catch {}
+    };
+    getProduct();
+  }, [item._id]);
+
+
+  const handleClick = () => {
+    dispatch(
+      addProduct({ ...product, quantity,color,size })
+    );
+  };
+
   return (
     <Container>
       <Circle />
       <Image src={item.img} />
       <Info>
         <Icon>
-          <ShoppingCartOutlined />
+          <onclick icon = {handleClick}>
+          <Link to={`/product/${item._id}`}>
+        <ShoppingCartOutlined />
+          </Link>
+          </onclick>
+       
         </Icon>
         <Icon>
           <Link to={`/product/${item._id}`}>
