@@ -69,7 +69,6 @@ const Register = () => {
 
   const [user, setUser] = useState({
     name: '',
-    lastName: '',
     username: '',
     email: '',
     password: '',
@@ -85,7 +84,7 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    register(dispatch, user);
+    register( dispatch,user);
   };
 
 
@@ -100,12 +99,6 @@ const Register = () => {
             value={user.name}
             onChange={handleInputChange}
             placeholder="name"
-          />
-          <Input
-            name="lastName"
-            value={user.lastName}
-            onChange={handleInputChange}
-            placeholder="last name"
           />
           <Input
             name="username"

@@ -16,25 +16,14 @@ export const login = async (dispatch, user) => {
 };
 
 
-export const register = async (dispatch, user) => {
+export const register = async (ḍispatch,user) => {
 
   try {
     const res = await publicRequest.post("/auth/register", user);
-    console.log('Registration successful:', res.data);
+    ḍispatch(registrationSuccess(res.data));
   } catch (error) {
     console.error('Registration err:', error.stack);
+    ḍispatch(registrationFailure(error));
   }
 };
 
-
-
-// export const register = async (user) => {
-//   try {
-//     // Define the registration endpoint URL
-//     const res = await publicRequest.post("/auth/register", user);
-//     const response = await axios.post(res, user);
-//     console.log('Registration successful:', response.data);
-//   } catch (error) {
-//     console.error('Registration error:', error);
-//   }
-// };
